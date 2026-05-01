@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -11,9 +12,11 @@ import {
   Linkedin,
   Mail,
   MonitorPlay,
+  Moon,
   ScanSearch,
   ServerCog,
   ShieldCheck,
+  Sun,
   Waypoints,
   Wrench,
   type LucideIcon,
@@ -397,6 +400,23 @@ const fadeInUp = {
   transition: { duration: 0.45, ease: "easeOut" as const },
 };
 
+type Theme = "light" | "dark";
+
+const themeStorageKey = "theme-preference";
+
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  const storedTheme = window.localStorage.getItem(themeStorageKey);
+  if (storedTheme === "light" || storedTheme === "dark") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 function SectionHeading({
   eyebrow,
   title,
@@ -408,23 +428,40 @@ function SectionHeading({
 }) {
   return (
     <motion.div {...fadeInUp} className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700">
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700 dark:text-sky-300">
         {eyebrow}
       </p>
-      <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+      <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 text-base leading-8 text-slate-600">{description}</p>
+      <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+        {description}
+      </p>
     </motion.div>
   );
 }
 
 function App() {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem(themeStorageKey, theme);
+  }, [theme]);
+
+  const isDark = theme === "dark";
+  const ThemeIcon = isDark ? Sun : Moon;
+  const themeLabel = isDark ? "Light mode" : "Dark mode";
+
   return (
-    <div className="min-h-screen bg-transparent text-slate-900">
-      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur">
+    <div className="min-h-screen bg-transparent text-slate-900 transition-colors duration-300 dark:text-slate-100">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur transition-colors duration-300 dark:border-slate-800/80 dark:bg-slate-950/75">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-          <a href="#top" className="text-sm font-bold tracking-[0.18em] text-slate-950">
+          <a
+            href="#top"
+            className="text-sm font-bold tracking-[0.18em] text-slate-950 dark:text-white"
+          >
             ABU TALHA
           </a>
 
@@ -433,50 +470,62 @@ function App() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-slate-600 hover:text-slate-950"
+                className="text-sm text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
               >
                 {item.label}
               </a>
             ))}
           </div>
 
-          <a
-            href={profile.email}
-            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 hover:border-slate-400 hover:bg-slate-50"
-          >
-            Contact
-            <Mail className="h-4 w-4" />
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              aria-label={`Switch to ${themeLabel.toLowerCase()}`}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 transition-colors hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-600 dark:hover:bg-slate-800"
+            >
+              <ThemeIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">{themeLabel}</span>
+            </button>
+
+            <a
+              href={profile.email}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-600 dark:hover:bg-slate-800"
+            >
+              Contact
+              <Mail className="h-4 w-4" />
+            </a>
+          </div>
         </nav>
       </header>
 
       <main id="top">
         <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-28 lg:pt-24">
           <motion.div {...fadeInUp} className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700 dark:text-sky-300">
               {profile.shortTitle}
             </p>
-            <h1 className="mt-5 text-5xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-6xl">
+            <h1 className="mt-5 text-5xl font-semibold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-6xl">
               {profile.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
               {profile.summary}
             </p>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
               {profile.intro}
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800 dark:bg-sky-300 dark:text-slate-950 dark:hover:bg-sky-200"
               >
                 View Projects
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:border-slate-400 hover:bg-slate-50"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-600 dark:hover:bg-slate-800"
               >
                 Contact Me
               </a>
@@ -486,7 +535,7 @@ function App() {
               {profile.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700"
+                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
                 >
                   {tag}
                 </span>
@@ -496,30 +545,34 @@ function App() {
 
           <motion.aside
             {...fadeInUp}
-            className="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
+            className="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_60px_rgba(2,6,23,0.45)]"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
               Profile
             </p>
 
             <div className="mt-6 space-y-6">
-              <div className="border-b border-slate-200 pb-5">
-                <p className="text-sm text-slate-500">Name</p>
-                <p className="mt-2 text-lg font-semibold text-slate-950">{profile.name}</p>
+              <div className="border-b border-slate-200 pb-5 dark:border-slate-800">
+                <p className="text-sm text-slate-500 dark:text-slate-400">Name</p>
+                <p className="mt-2 text-lg font-semibold text-slate-950 dark:text-white">
+                  {profile.name}
+                </p>
               </div>
-              <div className="border-b border-slate-200 pb-5">
-                <p className="text-sm text-slate-500">Location</p>
-                <p className="mt-2 text-lg font-semibold text-slate-950">{profile.location}</p>
+              <div className="border-b border-slate-200 pb-5 dark:border-slate-800">
+                <p className="text-sm text-slate-500 dark:text-slate-400">Location</p>
+                <p className="mt-2 text-lg font-semibold text-slate-950 dark:text-white">
+                  {profile.location}
+                </p>
               </div>
-              <div className="border-b border-slate-200 pb-5">
-                <p className="text-sm text-slate-500">Focus</p>
-                <p className="mt-2 text-base leading-7 text-slate-700">
+              <div className="border-b border-slate-200 pb-5 dark:border-slate-800">
+                <p className="text-sm text-slate-500 dark:text-slate-400">Focus</p>
+                <p className="mt-2 text-base leading-7 text-slate-700 dark:text-slate-300">
                   Infrastructure, automation, reliable service operations, media workflows, and practical technical tooling.
                 </p>
               </div>
               <div>
-                <p className="text-sm text-slate-500">Working Style</p>
-                <p className="mt-2 text-base leading-7 text-slate-700">
+                <p className="text-sm text-slate-500 dark:text-slate-400">Working Style</p>
+                <p className="mt-2 text-base leading-7 text-slate-700 dark:text-slate-300">
                   Structured, practical, documentation-minded, and focused on systems that remain understandable under real conditions.
                 </p>
               </div>
@@ -539,7 +592,7 @@ function App() {
               {profile.about.map((paragraph) => (
                 <div
                   key={paragraph}
-                  className="rounded-[1.5rem] border border-slate-200 bg-white p-6 text-base leading-8 text-slate-700 shadow-[0_20px_50px_rgba(15,23,42,0.04)]"
+                  className="rounded-[1.5rem] border border-slate-200 bg-white p-6 text-base leading-8 text-slate-700 shadow-[0_20px_50px_rgba(15,23,42,0.04)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:shadow-[0_20px_50px_rgba(2,6,23,0.35)]"
                 >
                   {paragraph}
                 </div>
@@ -561,15 +614,19 @@ function App() {
                 key={title}
                 {...fadeInUp}
                 transition={{ duration: 0.45, delay: index * 0.03, ease: "easeOut" }}
-                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.04)]"
+                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.04)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_50px_rgba(2,6,23,0.35)]"
               >
                 <div className="flex items-start gap-4">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-sky-300 dark:text-slate-950">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
-                    <p className="mt-2 text-base leading-7 text-slate-600">{description}</p>
+                    <h3 className="text-xl font-semibold text-slate-950 dark:text-white">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-base leading-7 text-slate-600 dark:text-slate-300">
+                      {description}
+                    </p>
                   </div>
                 </div>
 
@@ -577,7 +634,7 @@ function App() {
                   {items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700"
+                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                     >
                       {item}
                     </span>
@@ -602,42 +659,46 @@ function App() {
                   key={title}
                   {...fadeInUp}
                   transition={{ duration: 0.45, delay: index * 0.03, ease: "easeOut" }}
-                  className="rounded-[1.65rem] border border-slate-200 bg-white p-7 shadow-[0_20px_50px_rgba(15,23,42,0.04)]"
+                  className="rounded-[1.65rem] border border-slate-200 bg-white p-7 shadow-[0_20px_50px_rgba(15,23,42,0.04)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_50px_rgba(2,6,23,0.35)]"
                 >
                   <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                     <div className="max-w-3xl">
                       <div className="flex items-center gap-3">
-                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-sky-300 dark:text-slate-950">
                           <Icon className="h-5 w-5" />
                         </span>
                         <div>
-                          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sky-700">
+                          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sky-700 dark:text-sky-300">
                             {category}
                           </p>
-                          <h3 className="mt-1 text-2xl font-semibold text-slate-950">
+                          <h3 className="mt-1 text-2xl font-semibold text-slate-950 dark:text-white">
                             {title}
                           </h3>
                         </div>
                       </div>
 
-                      <p className="mt-5 text-base leading-7 text-slate-700">{description}</p>
-                      <p className="mt-4 text-base leading-7 text-slate-600">{detail}</p>
+                      <p className="mt-5 text-base leading-7 text-slate-700 dark:text-slate-200">
+                        {description}
+                      </p>
+                      <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">
+                        {detail}
+                      </p>
                     </div>
 
-                    <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700">
+                    <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
                       {status}
                     </div>
                   </div>
 
                   <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.95fr]">
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                         Highlights
                       </p>
                       <div className="mt-3 space-y-3">
                         {highlights.map((item) => (
-                          <div key={item} className="flex gap-3 text-slate-700">
-                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-sky-600" />
+                          <div key={item} className="flex gap-3 text-slate-700 dark:text-slate-200">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-sky-600 dark:bg-sky-300" />
                             <p className="text-base leading-7">{item}</p>
                           </div>
                         ))}
@@ -645,14 +706,14 @@ function App() {
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                         Technology
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {tech.map((item) => (
                           <span
                             key={item}
-                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700"
+                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                           >
                             {item}
                           </span>
@@ -679,14 +740,18 @@ function App() {
                 key={entry.title}
                 {...fadeInUp}
                 transition={{ duration: 0.45, delay: index * 0.03, ease: "easeOut" }}
-                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.04)]"
+                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.04)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_50px_rgba(2,6,23,0.35)]"
               >
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                   <div className="max-w-3xl">
-                    <h3 className="text-2xl font-semibold text-slate-950">{entry.title}</h3>
-                    <p className="mt-4 text-base leading-7 text-slate-600">{entry.description}</p>
+                    <h3 className="text-2xl font-semibold text-slate-950 dark:text-white">
+                      {entry.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">
+                      {entry.description}
+                    </p>
                   </div>
-                  <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700">
+                  <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
                     {entry.period}
                   </div>
                 </div>
@@ -695,7 +760,7 @@ function App() {
                   {entry.points.map((point) => (
                     <div
                       key={point}
-                      className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-6 text-slate-700"
+                      className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-6 text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                     >
                       {point}
                     </div>
@@ -719,13 +784,17 @@ function App() {
                 key={title}
                 {...fadeInUp}
                 transition={{ duration: 0.45, delay: index * 0.03, ease: "easeOut" }}
-                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.04)]"
+                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.04)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_20px_50px_rgba(2,6,23,0.35)]"
               >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-sky-300 dark:text-slate-950">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-5 text-xl font-semibold text-slate-950">{title}</h3>
-                <p className="mt-3 text-base leading-7 text-slate-600">{description}</p>
+                <h3 className="mt-5 text-xl font-semibold text-slate-950 dark:text-white">
+                  {title}
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">
+                  {description}
+                </p>
               </motion.article>
             ))}
           </div>
@@ -734,7 +803,7 @@ function App() {
         <section id="contact" className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
           <motion.div
             {...fadeInUp}
-            className="rounded-[1.75rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-[0_28px_70px_rgba(15,23,42,0.12)] lg:p-10"
+            className="rounded-[1.75rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-[0_28px_70px_rgba(15,23,42,0.12)] transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900 dark:shadow-[0_28px_70px_rgba(2,6,23,0.45)] lg:p-10"
           >
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div className="max-w-2xl">
@@ -781,7 +850,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-slate-200 px-6 py-8 text-center text-sm text-slate-500 lg:px-8">
+      <footer className="border-t border-slate-200 px-6 py-8 text-center text-sm text-slate-500 transition-colors duration-300 dark:border-slate-800 dark:text-slate-400 lg:px-8">
         © 2026 Abu Talha. Built with React, TypeScript and Tailwind CSS.
       </footer>
     </div>
