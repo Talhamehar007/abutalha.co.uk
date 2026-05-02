@@ -1,0 +1,11 @@
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: ${IMAGE_NAME:-abutalha-co-uk:local}
+    container_name: ${CONTAINER_NAME:-abutalha_co_uk}
+    ports:
+      - "${HOST_PORT:-5757}:80"
+    restart: unless-stopped
