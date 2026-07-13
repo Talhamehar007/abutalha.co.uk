@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   BriefcaseBusiness,
-  Cable,
   Camera,
-  CheckCircle2,
   Code2,
   Database,
   Github,
@@ -27,285 +25,207 @@ import {
 
 const profile = {
   name: "Abu Talha",
-  title: "Systems, Automation & Self-Hosted Infrastructure Builder",
-  shortTitle: "Infrastructure • Automation • AI Workflows",
+  role: "Self-hosting, automation and practical technical systems",
   location: "United Kingdom",
   email: "mailto:abutalha.gb@proton.me",
   github: "https://github.com/talhamehar007",
   twitter: "https://twitter.com/talhamehar007",
-  summary:
-    "I build practical systems across self-hosted infrastructure, automation, media services, backup workflows, and AI-assisted tooling.",
   intro:
-    "This is a personal portfolio for the technical things I enjoy building: reliable services, useful automation, homelab workflows, media systems, computer vision experiments, and small tools that solve real operational problems.",
-  about: [
-    "I’m Abu Talha, a hands-on technical builder focused on self-hosted infrastructure, automation, storage reliability, media systems, and AI-assisted workflows. I enjoy systems that are not only interesting technically, but useful, maintainable, and reliable in everyday use.",
-    "My work includes Docker-based service deployments, Linux and macOS workflows, local networking, backup and restore planning, media automation, video processing, and Python tooling. I often work close to the system level: logs, storage paths, configuration, scheduled jobs, diagnostics, and performance.",
-    "I also bring experience from business project management, civil engineering, and hospitality operations. That mix shapes how I approach technical work: structure, practical constraints, communication, risk awareness, and systems that can be understood when something goes wrong.",
-  ],
-  tags: [
-    "Self-Hosting",
-    "Docker & Linux",
-    "Python Automation",
-    "Backup Workflows",
-    "Media Systems",
-    "Computer Vision",
-  ],
+    "I build and maintain practical systems for my own use: self-hosted services, media workflows, backups, small automation tools, and computer-vision experiments.",
+  summary:
+    "This site gives visitors a clear sense of my technical interests, my current working level, and the kind of practical problems I enjoy solving.",
   nav: [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
+    { label: "Overview", href: "#overview" },
+    { label: "Focus", href: "#focus" },
     { label: "Projects", href: "#projects" },
     { label: "Background", href: "#background" },
     { label: "Contact", href: "#contact" },
   ],
 };
 
-type SkillGroup = {
+type FocusArea = {
   title: string;
   level: string;
   description: string;
   icon: LucideIcon;
-  items: string[];
+  tools: string[];
 };
 
-const skills: SkillGroup[] = [
+const focusAreas: FocusArea[] = [
   {
-    title: "Infrastructure & Self-Hosting",
-    level: "Confident",
+    title: "Self-hosted infrastructure",
+    level: "Comfortable",
     description:
-      "Containerised services, local networks, service configuration, diagnostics, and small-scale operational environments.",
+      "Running Docker-based services, thinking through storage, networking, service configuration, logs and day-to-day maintenance.",
     icon: ServerCog,
-    items: ["Docker", "Docker Compose", "Linux", "macOS workflows", "Local DNS", "Reverse proxy concepts"],
+    tools: ["Docker", "Docker Compose", "Linux", "macOS", "local networking", "reverse proxy concepts"],
   },
   {
-    title: "Backup, Storage & Reliability",
-    level: "Strong focus",
+    title: "Backup and recovery",
+    level: "Strong interest",
     description:
-      "Backup planning, restore confidence, encrypted repositories, storage troubleshooting, and repeatable recovery workflows.",
+      "Designing backup routines that are understandable, repeatable and tested enough to be trusted when something goes wrong.",
     icon: HardDrive,
-    items: ["Restic", "Borg", "Rclone", "Rsync", "Restore testing", "Retention planning"],
+    tools: ["Restic", "Borg", "Rclone", "Rsync", "restore testing", "retention planning"],
   },
   {
-    title: "Media Systems & Automation",
-    level: "Practical builder",
+    title: "Media and photo systems",
+    level: "Practical experience",
     description:
-      "Self-hosted media services, download workflows, metadata handling, and repeatable media processing pipelines.",
+      "Building personal media workflows around storage, metadata, downloads, photo libraries and reliable service operation.",
     icon: MonitorPlay,
-    items: ["Jellyfin", "Immich", "FFmpeg", "qBittorrent", "Radarr", "Sonarr", "Prowlarr"],
+    tools: ["Jellyfin", "Immich", "FFmpeg", "qBittorrent", "Radarr", "Sonarr", "Prowlarr"],
   },
   {
-    title: "AI, Vision & Python Tooling",
-    level: "Actively building",
+    title: "Python automation and vision",
+    level: "Actively learning",
     description:
-      "Computer-vision experiments and automation tools using video streams, image processing, local inference, and structured logs.",
+      "Using Python to automate repetitive tasks and explore video processing, camera streams and computer-vision ideas.",
     icon: Camera,
-    items: ["Python", "OpenCV", "YOLO", "RTSP", "Face detection", "CLI tools", "Processing pipelines"],
+    tools: ["Python", "OpenCV", "YOLO", "RTSP", "CLI tools", "structured logs"],
   },
   {
-    title: "Web, Scripting & Developer Tools",
-    level: "Useful working level",
+    title: "Small web and data tools",
+    level: "Working level",
     description:
-      "Small interfaces, dashboards, scripts, APIs, and developer-facing tools that make systems easier to operate.",
+      "Creating small dashboards, scripts and local tools that make systems easier to inspect, search or operate.",
     icon: Code2,
-    items: ["React", "TypeScript", "Tailwind CSS", "Flask", "Shell scripting", "Git", "SQLite"],
+    tools: ["React", "TypeScript", "Tailwind CSS", "Flask", "SQLite", "Git", "shell scripting"],
   },
   {
-    title: "Operational & Professional Skills",
+    title: "Operational thinking",
     level: "Experienced",
     description:
-      "Communication, planning, structured troubleshooting, and pressure-tested problem-solving from technical and service environments.",
+      "Bringing planning, communication and practical problem-solving from hospitality, project management and engineering study.",
     icon: BriefcaseBusiness,
-    items: ["Project planning", "Documentation", "Team coordination", "Risk awareness", "Customer-facing work"],
+    tools: ["documentation", "planning", "risk awareness", "team coordination", "troubleshooting"],
   },
 ];
 
 type Project = {
   title: string;
-  category: string;
+  area: string;
   description: string;
-  detail: string;
-  highlights: string[];
-  tech: string[];
+  outcome: string;
+  tools: string[];
   status: string;
   icon: LucideIcon;
 };
 
 const projects: Project[] = [
   {
-    title: "Smart CCTV & Computer Vision System",
-    category: "Computer Vision / Video Infrastructure",
+    title: "Smart CCTV and video analysis",
+    area: "Computer vision",
     description:
-      "A custom CCTV-style system around live streams, motion detection, event recording, and computer-vision processing.",
-    detail:
-      "The project explores practical video workflows using RTSP, Python, OpenCV, and model integration, with attention to reconnect behaviour, logs, retention, and modular design.",
-    highlights: ["RTSP stream handling", "Python and OpenCV processing", "Event metadata and retention planning"],
-    tech: ["Python", "OpenCV", "RTSP", "MediaMTX", "YOLO", "Docker"],
-    status: "Active development",
+      "A personal CCTV-style project exploring live streams, motion detection, event clips and computer-vision processing.",
+    outcome:
+      "The aim is a video workflow that is understandable and modular: stream handling, recording, useful logs, retention and future dashboard options.",
+    tools: ["Python", "OpenCV", "RTSP", "MediaMTX", "YOLO", "Docker"],
+    status: "Active build",
     icon: Camera,
   },
   {
-    title: "Self-Hosted Media Infrastructure",
-    category: "Homelab / Media Automation",
+    title: "Self-hosted media stack",
+    area: "Homelab",
     description:
-      "A containerised media environment built around organised storage, automated media workflows, and reliable service operation.",
-    detail:
-      "The focus is the full operating model: storage layout, permissions, service networking, logs, restart behaviour, and recovery planning.",
-    highlights: ["Containerised media stack", "Library organisation", "Service diagnostics and configuration"],
-    tech: ["Docker", "Docker Compose", "Jellyfin", "Radarr", "Sonarr", "Prowlarr"],
-    status: "Production-style homelab",
+      "A Docker-based media environment for serving, organising and managing a personal library.",
+    outcome:
+      "The work is less about running apps for their own sake and more about making the full workflow maintainable: storage layout, permissions, logs and recovery.",
+    tools: ["Docker", "Jellyfin", "Radarr", "Sonarr", "Prowlarr", "qBittorrent"],
+    status: "In regular use",
     icon: MonitorPlay,
   },
   {
-    title: "Photo Management & Backup Workflow",
-    category: "Self-Hosting / Reliability",
+    title: "Photo library and backup routine",
+    area: "Data protection",
     description:
-      "A self-hosted photo workflow focused on service deployment, data protection, and dependable backup and restore procedures.",
-    detail:
-      "This treats stored data as critical, covering service setup, database awareness, storage layout, backup scheduling, restore testing, and diagnostics.",
-    highlights: ["Database-backed app management", "Recovery-focused backups", "Service logs and storage diagnostics"],
-    tech: ["Docker", "PostgreSQL", "Redis", "Restic", "Rclone"],
+      "A self-hosted photo workflow with attention to stored data, database-backed services and restore planning.",
+    outcome:
+      "The priority is confidence: knowing where data lives, what is backed up, how services depend on each other and how recovery would work.",
+    tools: ["Immich", "Docker", "PostgreSQL", "Redis", "Restic", "Rclone"],
     status: "Operational",
     icon: Database,
   },
   {
-    title: "Automated Backup & Recovery Systems",
-    category: "Reliability / Automation",
+    title: "Backup automation",
+    area: "Reliability",
     description:
-      "Backup workflows designed around repeatability, visibility, encryption-aware handling, and restore confidence.",
-    detail:
-      "The goal is to make backups observable and genuinely recoverable, with attention to retention, remote targets, credentials, and restore checks.",
-    highlights: ["Local and remote backup targets", "Restore verification", "Log-driven troubleshooting"],
-    tech: ["Restic", "Borg", "Rclone", "Rsync", "Bash", "Scheduling"],
-    status: "Ongoing reliability work",
+      "A set of local and remote backup workflows using tools that support encryption, retention and repeatable restores.",
+    outcome:
+      "I focus on keeping backups visible and testable rather than treating them as a background task that only gets checked after a failure.",
+    tools: ["Restic", "Borg", "Rclone", "Rsync", "Bash", "scheduling"],
+    status: "Ongoing",
     icon: ShieldCheck,
   },
   {
-    title: "Media Download & Archive Automation",
-    category: "CLI Automation / Media Tooling",
+    title: "Download and archive workflows",
+    area: "Automation",
     description:
-      "Repeatable workflows for downloading, organising, and archiving online media with command-line tooling and metadata.",
-    detail:
-      "The work makes long-running jobs more traceable through archive tracking, logs, metadata output, authentication workflows, and safer pacing.",
-    highlights: ["Metadata and archive tracking", "Error logging and batch processing", "Rate-limit aware workflows"],
-    tech: ["yt-dlp", "gallery-dl", "Python", "Bash", "uv"],
-    status: "Advanced personal tooling",
+      "Command-line workflows for downloading, organising and archiving media with metadata and repeatable configuration.",
+    outcome:
+      "The goal is traceability: clear logs, archive files, safer pacing and commands that can be rerun without creating a mess.",
+    tools: ["yt-dlp", "gallery-dl", "Python", "Bash", "uv"],
+    status: "Personal tooling",
     icon: Waypoints,
   },
   {
-    title: "Local Dataset Search & CLI Tools",
-    category: "Data Tooling / CLI Development",
+    title: "Local search and diagnostics tools",
+    area: "CLI and operations",
     description:
-      "A local data-processing workflow for importing structured datasets into SQLite and building practical search tools.",
-    detail:
-      "The focus is turning raw data into something locally searchable and useful through repeatable imports, sensible schema design, and clear terminal output.",
-    highlights: ["SQLite-backed search", "Repeatable data imports", "Terminal-first presentation"],
-    tech: ["Python", "SQLite", "CLI tooling", "Structured datasets"],
-    status: "Data tooling project",
+      "Small scripts and local databases for searching structured data and inspecting service behaviour.",
+    outcome:
+      "These projects help turn raw files, logs and service state into something easier to understand from the terminal.",
+    tools: ["Python", "SQLite", "Docker", "shell", "logs", "networking"],
+    status: "Ongoing practice",
     icon: ScanSearch,
   },
-  {
-    title: "Service Monitoring & Diagnostics Workflows",
-    category: "Operations / Troubleshooting",
-    description:
-      "Practical workflows for understanding service health through logs, container state, network checks, and storage usage.",
-    detail:
-      "This work focuses on making service behaviour easier to inspect through clear commands, logs, container checks, storage review, and network diagnostics.",
-    highlights: ["Docker service diagnostics", "Log collection workflows", "Storage and network checks"],
-    tech: ["Docker", "Shell", "Linux", "macOS", "Logs", "Networking"],
-    status: "Ongoing practice",
-    icon: TerminalSquare,
-  },
 ];
 
-type ExperienceEntry = {
-  title: string;
-  period: string;
-  description: string;
-  points: string[];
-};
-
-const experience: ExperienceEntry[] = [
-  {
-    title: "Systems & Homelab Builder",
-    period: "Ongoing",
-    description:
-      "Designing, deploying, and maintaining self-hosted services and automation workflows across containers, storage, media infrastructure, backup tools, and local networks.",
-    points: ["Docker service stacks", "Media, photo, backup, and monitoring services", "Storage and restore workflows"],
-  },
-  {
-    title: "Automation & Python Tooling",
-    period: "Ongoing",
-    description:
-      "Building scripts and small tools for file processing, media workflows, video analysis, backups, logs, and command-line automation.",
-    points: ["Python automation", "Configuration-driven scripts", "Clear terminal output and logs"],
-  },
-  {
-    title: "Hospitality & Bar Operations",
-    period: "8+ years",
-    description:
-      "Customer-facing and operations experience in fast-paced environments, with team coordination and practical problem-solving under pressure.",
-    points: ["Communication", "Service flow and coordination", "Fast practical decisions"],
-  },
-  {
-    title: "Business Project Management",
-    period: "Postgraduate background",
-    description:
-      "Academic grounding in project planning, stakeholder thinking, dependency awareness, risk, and structured execution.",
-    points: ["Project planning", "Risk and dependency awareness", "Structured communication"],
-  },
-  {
-    title: "Civil Engineering",
-    period: "Bachelor’s background",
-    description:
-      "Technical academic foundation in engineering principles, analytical thinking, measurement, planning, and practical systems awareness.",
-    points: ["Engineering problem-solving", "Analytical thinking", "Systems and constraints"],
-  },
-];
-
-type Principle = {
+type BackgroundItem = {
   title: string;
   description: string;
   icon: LucideIcon;
 };
 
-const approach: Principle[] = [
+const background: BackgroundItem[] = [
   {
-    title: "Reliable before clever",
+    title: "Hands-on technical learning",
     description:
-      "A useful system should keep running, be restorable, and remain understandable when something breaks.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Automation with visibility",
-    description:
-      "Automation should reduce repetitive work while still showing progress, logs, and enough state to debug it.",
+      "Most of my technical progress comes from building systems I actually use, then improving them when real constraints show up.",
     icon: Wrench,
   },
   {
-    title: "Practical documentation",
+    title: "Hospitality operations",
     description:
-      "Documentation should explain what runs, why it exists, how to recover it, and where to look when it fails.",
-    icon: Code2,
+      "Years in customer-facing environments shaped how I communicate, stay organised and solve practical problems under pressure.",
+    icon: BriefcaseBusiness,
   },
   {
-    title: "Modular improvement",
+    title: "Project management",
     description:
-      "I prefer systems that can be improved piece by piece without destabilising the whole setup.",
-    icon: Cable,
+      "My postgraduate background helps me think about scope, risk, dependencies and clear delivery rather than only the technical details.",
+    icon: Network,
+  },
+  {
+    title: "Engineering foundation",
+    description:
+      "Civil engineering study gave me a structured way to think about systems, constraints, measurement and trade-offs.",
+    icon: TerminalSquare,
   },
 ];
 
-const stats = [
-  { label: "Primary focus", value: "Infrastructure" },
-  { label: "Build style", value: "Hands-on" },
-  { label: "Project type", value: "Personal / homelab" },
-  { label: "Location", value: profile.location },
+const principles = [
+  "Prefer simple systems that can be understood later.",
+  "Automate repetitive work, but keep logs and visibility.",
+  "Treat backup and recovery as part of the design, not an afterthought.",
+  "Use tools because they solve the problem, not because they look impressive.",
 ];
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 18 },
+  initial: { opacity: 0, y: 16 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.16 },
-  transition: { duration: 0.45, ease: "easeOut" as const },
+  viewport: { once: true, amount: 0.18 },
+  transition: { duration: 0.42, ease: "easeOut" as const },
 };
 
 type Theme = "light" | "dark";
@@ -330,24 +250,20 @@ function Section({
   title,
   description,
   children,
-  muted = false,
 }: {
   id: string;
   eyebrow: string;
   title: string;
   description: string;
   children: ReactNode;
-  muted?: boolean;
 }) {
   return (
-    <section id={id} className={muted ? "section-band" : "section-wrap"}>
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <section id={id} className="section">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 lg:px-8 lg:py-20">
         <motion.div {...fadeInUp} className="max-w-3xl">
           <p className="eyebrow">{eyebrow}</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white sm:text-4xl">
-            {title}
-          </h2>
-          <p className="mt-4 text-base leading-8 text-zinc-600 dark:text-zinc-300">{description}</p>
+          <h2 className="section-title">{title}</h2>
+          <p className="section-copy">{description}</p>
         </motion.div>
         {children}
       </div>
@@ -359,8 +275,7 @@ function App() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark", theme === "dark");
+    document.documentElement.classList.toggle("dark", theme === "dark");
     window.localStorage.setItem(themeStorageKey, theme);
   }, [theme]);
 
@@ -368,19 +283,17 @@ function App() {
   const ThemeIcon = isDark ? Sun : Moon;
 
   return (
-    <div className="min-h-screen text-zinc-900 transition-colors duration-300 dark:text-zinc-100">
-      <header className="sticky top-0 z-50 border-b border-zinc-200/80 bg-[#f7f4ee]/[0.86] backdrop-blur-xl dark:border-white/10 dark:bg-[#111111]/[0.86]">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-6 lg:px-8">
-          <a href="#top" className="flex items-center gap-3 text-sm font-semibold text-zinc-950 dark:text-white">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-zinc-950 text-sm text-white dark:bg-white dark:text-zinc-950">
-              AT
-            </span>
+    <div className="min-h-screen text-stone-950 transition-colors duration-300 dark:text-stone-100">
+      <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-stone-50/90 backdrop-blur-xl dark:border-white/10 dark:bg-[#11100e]/88">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
+          <a href="#top" className="flex items-center gap-3 text-sm font-semibold text-stone-950 dark:text-white">
+            <span className="brand-mark">AT</span>
             <span>{profile.name}</span>
           </a>
 
-          <div className="hidden items-center gap-1 rounded-lg border border-zinc-200 bg-white/70 p-1 shadow-sm dark:border-white/10 dark:bg-white/5 lg:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {profile.nav.map((item) => (
-              <a key={item.href} href={item.href} className="rounded-md px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white">
+              <a key={item.href} href={item.href} className="nav-link">
                 {item.label}
               </a>
             ))}
@@ -395,7 +308,7 @@ function App() {
             >
               <ThemeIcon className="h-4 w-4" />
             </button>
-            <a href={profile.email} className="inline-flex items-center gap-2 rounded-lg bg-zinc-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200">
+            <a href={profile.email} className="header-contact">
               <Mail className="h-4 w-4" />
               <span className="hidden sm:inline">Contact</span>
             </a>
@@ -404,84 +317,81 @@ function App() {
       </header>
 
       <main id="top">
-        <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-16 pt-12 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-24 lg:pt-18">
-          <motion.div {...fadeInUp} className="flex flex-col justify-center">
-            <p className="eyebrow">{profile.shortTitle}</p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.03] tracking-tight text-zinc-950 dark:text-white sm:text-6xl">
-              A practical portfolio of systems, automation, and technical hobbies.
+        <section className="mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-12 sm:px-6 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:pb-20 lg:pt-16">
+          <motion.div {...fadeInUp} className="self-center">
+            <p className="eyebrow">{profile.role}</p>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-stone-950 dark:text-white sm:text-6xl">
+              Building useful systems, one practical problem at a time.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">{profile.summary}</p>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">{profile.intro}</p>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700 dark:text-stone-300">{profile.intro}</p>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-stone-600 dark:text-stone-400">{profile.summary}</p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a href="#projects" className="primary-button">
                 View projects
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#skills" className="secondary-button">
-                See skills
+              <a href="#focus" className="secondary-button">
+                See focus areas
               </a>
             </div>
-
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {stats.map((item) => (
-                <div key={item.label} className="stat-tile">
-                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-500">{item.label}</p>
-                  <p className="mt-2 text-sm font-semibold text-zinc-950 dark:text-white">{item.value}</p>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
-          <motion.div {...fadeInUp} className="hero-visual">
-            <img src="/images/homelab-workspace.png" alt="A tidy homelab and automation workspace with laptop, compact server, camera module, and storage equipment" className="h-full min-h-[360px] w-full object-cover" />
-            <div className="absolute inset-x-4 bottom-4 grid gap-3 rounded-lg border border-white/20 bg-zinc-950/[0.82] p-4 text-white shadow-2xl backdrop-blur md:grid-cols-3">
-              {profile.tags.slice(0, 3).map((tag) => (
-                <div key={tag} className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-teal-300" />
-                  <span>{tag}</span>
-                </div>
-              ))}
+          <motion.aside {...fadeInUp} className="hero-panel">
+            <img
+              src="/images/homelab-workspace.png"
+              alt="A tidy personal technical workspace with a laptop, storage hardware and camera module"
+              className="h-72 w-full object-cover sm:h-80 lg:h-96"
+            />
+            <div className="border-t border-stone-200 bg-white p-5 dark:border-white/10 dark:bg-[#171614]">
+              <p className="text-sm font-semibold text-stone-950 dark:text-white">What this site is about</p>
+              <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-400">
+                A friendly snapshot of my technical interests, personal projects and current working level.
+              </p>
             </div>
-          </motion.div>
+          </motion.aside>
         </section>
 
         <Section
-          id="about"
-          eyebrow="About"
-          title="A technical personal portfolio, not a corporate resume."
-          description="Visitors should quickly understand what I enjoy building, how I think about systems, and where my interests sit across infrastructure, automation, media, and reliability."
+          id="overview"
+          eyebrow="Overview"
+          title="A personal technical profile with a practical focus."
+          description="This is a personal technical profile rather than a formal CV. It gives a clear record of the systems I like building, the tools I use, and the way I approach technical learning."
         >
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {profile.about.map((paragraph) => (
-              <motion.article key={paragraph} {...fadeInUp} className="content-panel">
-                <p className="text-base leading-8 text-zinc-700 dark:text-zinc-300">{paragraph}</p>
-              </motion.article>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {principles.map((item, index) => (
+              <motion.div key={item} {...fadeInUp} transition={{ duration: 0.42, delay: index * 0.03, ease: "easeOut" }} className="statement-card">
+                <span className="statement-number">{String(index + 1).padStart(2, "0")}</span>
+                <p>{item}</p>
+              </motion.div>
             ))}
           </div>
         </Section>
 
         <Section
-          id="skills"
-          eyebrow="Skills"
-          title="Skills and interests by working level."
-          description="The focus is honest and practical: tools I use, areas I’m actively building in, and operational skills that support the technical work."
-          muted
+          id="focus"
+          eyebrow="Focus areas"
+          title="What I spend time learning and building."
+          description="These are the areas I return to most often. Some are stronger than others, but all of them are grounded in hands-on projects rather than abstract interest."
         >
-          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {skills.map(({ title, level, description, icon: Icon, items }, index) => (
-              <motion.article key={title} {...fadeInUp} transition={{ duration: 0.45, delay: index * 0.025, ease: "easeOut" }} className="content-panel">
-                <div className="flex items-start justify-between gap-4">
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {focusAreas.map(({ title, level, description, icon: Icon, tools }, index) => (
+              <motion.article key={title} {...fadeInUp} transition={{ duration: 0.42, delay: index * 0.025, ease: "easeOut" }} className="focus-card">
+                <div className="flex items-start gap-4">
                   <span className="icon-box">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="rounded-md bg-teal-50 px-2.5 py-1 text-xs font-semibold text-teal-800 dark:bg-teal-400/10 dark:text-teal-200">{level}</span>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-lg font-semibold text-stone-950 dark:text-white">{title}</h3>
+                      <span className="level-label">{level}</span>
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-stone-600 dark:text-stone-400">{description}</p>
+                  </div>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-zinc-950 dark:text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-400">{description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {items.map((item) => (
-                    <span key={item} className="chip">{item}</span>
+                  {tools.map((tool) => (
+                    <span key={tool} className="tool-pill">{tool}</span>
                   ))}
                 </div>
               </motion.article>
@@ -492,47 +402,36 @@ function App() {
         <Section
           id="projects"
           eyebrow="Projects"
-          title="Selected projects and build areas."
-          description="These projects show the sort of work behind the portfolio: small systems with real constraints, not polished commercial claims."
+          title="Selected personal projects."
+          description="The projects below are examples of the kind of work I enjoy: services that need to keep running, workflows that should be repeatable, and tools that make everyday technical tasks easier."
         >
-          <div className="mt-10 grid gap-4">
-            {projects.map(({ title, category, description, detail, highlights, tech, status, icon: Icon }, index) => (
-              <motion.article key={title} {...fadeInUp} transition={{ duration: 0.45, delay: index * 0.025, ease: "easeOut" }} className="project-row">
-                <div className="flex gap-4">
-                  <span className="icon-box shrink-0">
-                    <Icon className="h-5 w-5" />
-                  </span>
+          <div className="mt-10 grid gap-5">
+            {projects.map(({ title, area, description, outcome, tools, status, icon: Icon }, index) => (
+              <motion.article key={title} {...fadeInUp} transition={{ duration: 0.42, delay: index * 0.025, ease: "easeOut" }} className="project-card">
+                <div className="grid gap-5 lg:grid-cols-[1fr_1.35fr] lg:items-start">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-700 dark:text-teal-300">{category}</p>
-                    <h3 className="mt-2 text-xl font-semibold text-zinc-950 dark:text-white">{title}</h3>
-                    <p className="mt-3 text-base leading-7 text-zinc-700 dark:text-zinc-300">{description}</p>
-                    <p className="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-400">{detail}</p>
+                    <div className="flex items-center gap-3">
+                      <span className="icon-box">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="project-area">{area}</p>
+                        <h3 className="mt-1 text-xl font-semibold text-stone-950 dark:text-white">{title}</h3>
+                      </div>
+                    </div>
+                    <p className="mt-5 inline-flex rounded-md border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-semibold text-stone-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-stone-300">
+                      {status}
+                    </p>
                   </div>
-                </div>
 
-                <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_0.8fr_0.42fr]">
                   <div>
-                    <p className="mini-label">Highlights</p>
-                    <div className="mt-3 grid gap-2">
-                      {highlights.map((item) => (
-                        <p key={item} className="flex gap-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-600 dark:text-teal-300" />
-                          {item}
-                        </p>
+                    <p className="text-base leading-7 text-stone-700 dark:text-stone-300">{description}</p>
+                    <p className="mt-3 text-sm leading-7 text-stone-600 dark:text-stone-400">{outcome}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {tools.map((tool) => (
+                        <span key={tool} className="tool-pill">{tool}</span>
                       ))}
                     </div>
-                  </div>
-                  <div>
-                    <p className="mini-label">Tools</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {tech.map((item) => (
-                        <span key={item} className="chip">{item}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="mini-label">Status</p>
-                    <p className="mt-3 rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-700 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300">{status}</p>
                   </div>
                 </div>
               </motion.article>
@@ -543,67 +442,42 @@ function App() {
         <Section
           id="background"
           eyebrow="Background"
-          title="Technical work shaped by real operational experience."
-          description="The site should show the practical side too: planning, communication, troubleshooting, and pressure-tested problem-solving all feed into how I build."
-          muted
+          title="The practical side matters too."
+          description="My technical work is shaped by more than tools. Planning, service work, communication and structured problem-solving all influence how I approach projects."
         >
-          <div className="mt-10 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-            <motion.div {...fadeInUp} className="content-panel">
-              <div className="flex items-center gap-3">
-                <span className="icon-box"><Network className="h-5 w-5" /></span>
-                <h3 className="text-xl font-semibold text-zinc-950 dark:text-white">How I work</h3>
-              </div>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {approach.map(({ title, description, icon: Icon }) => (
-                  <div key={title} className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-white/10 dark:bg-white/5">
-                    <Icon className="h-5 w-5 text-teal-700 dark:text-teal-300" />
-                    <h4 className="mt-3 text-sm font-semibold text-zinc-950 dark:text-white">{title}</h4>
-                    <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">{description}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <div className="grid gap-4">
-              {experience.map((entry, index) => (
-                <motion.article key={entry.title} {...fadeInUp} transition={{ duration: 0.45, delay: index * 0.025, ease: "easeOut" }} className="content-panel">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <h3 className="text-lg font-semibold text-zinc-950 dark:text-white">{entry.title}</h3>
-                    <span className="rounded-md bg-zinc-100 px-2.5 py-1 text-xs font-semibold text-zinc-600 dark:bg-white/10 dark:text-zinc-300">{entry.period}</span>
-                  </div>
-                  <p className="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-400">{entry.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {entry.points.map((point) => (
-                      <span key={point} className="chip">{point}</span>
-                    ))}
-                  </div>
-                </motion.article>
-              ))}
-            </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {background.map(({ title, description, icon: Icon }, index) => (
+              <motion.article key={title} {...fadeInUp} transition={{ duration: 0.42, delay: index * 0.03, ease: "easeOut" }} className="background-card">
+                <Icon className="h-5 w-5 text-emerald-700 dark:text-emerald-300" />
+                <h3 className="mt-4 text-lg font-semibold text-stone-950 dark:text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-stone-600 dark:text-stone-400">{description}</p>
+              </motion.article>
+            ))}
           </div>
         </Section>
 
-        <section id="contact" className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <motion.div {...fadeInUp} className="overflow-hidden rounded-lg border border-zinc-200 bg-zinc-950 text-white shadow-xl dark:border-white/10">
-            <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-end lg:p-10">
-              <div className="max-w-2xl">
-                <p className="eyebrow text-teal-300">Contact</p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">For projects, collaborations, or technical conversations.</h2>
-                <p className="mt-4 text-base leading-8 text-zinc-300">
-                  I’m interested in practical technical work involving self-hosted systems, automation, media infrastructure, backup workflows, Python tooling, and AI-assisted systems.
-                </p>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                <a href={profile.email} className="contact-button"><Mail className="h-4 w-4" />Email</a>
-                <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github className="h-4 w-4" />GitHub</a>
-                <a href={profile.twitter} target="_blank" rel="noreferrer" className="contact-button"><Twitter className="h-4 w-4" />Twitter</a>
-              </div>
+        <section id="contact" className="mx-auto max-w-6xl px-5 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <motion.div {...fadeInUp} className="contact-panel">
+            <div className="max-w-2xl">
+              <p className="eyebrow text-emerald-200">Contact</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                Feel free to reach out.
+              </h2>
+              <p className="mt-4 text-base leading-8 text-stone-300">
+                I’m always interested in practical conversations around self-hosting, automation, backups, media workflows and small technical tools.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <a href={profile.email} className="contact-button"><Mail className="h-4 w-4" />Email</a>
+              <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github className="h-4 w-4" />GitHub</a>
+              <a href={profile.twitter} target="_blank" rel="noreferrer" className="contact-button"><Twitter className="h-4 w-4" />Twitter</a>
             </div>
           </motion.div>
         </section>
       </main>
 
-      <footer className="border-t border-zinc-200 px-5 py-8 text-center text-sm text-zinc-500 dark:border-white/10 dark:text-zinc-500">
+      <footer className="border-t border-stone-200 px-5 py-8 text-center text-sm text-stone-500 dark:border-white/10 dark:text-stone-500">
         © 2026 Abu Talha. Built with React, TypeScript and Tailwind CSS.
       </footer>
     </div>
