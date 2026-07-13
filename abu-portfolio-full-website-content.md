@@ -10,9 +10,9 @@ const profile = {
   title: "Systems, Automation & Self-Hosted Infrastructure Builder",
   shortTitle: "Infrastructure • Automation • AI Workflows",
   location: "United Kingdom",
-  email: "hello@example.com",
-  github: "https://github.com/",
-  linkedin: "https://www.linkedin.com/",
+  email: "mailto:abutalha.gb@proton.me",
+  github: "https://github.com/talhamehar007",
+  twitter: "https://twitter.com/talhamehar007",
   summary:
     "I build practical systems across self-hosted infrastructure, automation, media services, backup workflows, and AI-assisted tooling. My work focuses on reliability, maintainability, and solving real-world technical problems.",
 };
@@ -613,14 +613,14 @@ For projects, collaborations, or opportunities, feel free to get in touch.
 
 - Email Me
 - GitHub
-- LinkedIn
+- Twitter
 
 Use these temporary links until replaced:
 
 ```ts
-email: "mailto:hello@example.com"
-github: "https://github.com/"
-linkedin: "https://www.linkedin.com/"
+email: "mailto:abutalha.gb@proton.me"
+github: "https://github.com/talhamehar007"
+twitter: "https://twitter.com/talhamehar007"
 ```
 
 ---
