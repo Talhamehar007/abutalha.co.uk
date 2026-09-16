@@ -1,106 +1,83 @@
-# Abu Talha Portfolio Website Content
+# Abu Talha — personal website
 
-This file mirrors the live site direction. Keep the tone friendly, direct and professional without making the portfolio sound like a senior job profile or a commercial product page.
+The site is a personal corner of the web for a hobbyist coder and computer science enthusiast. Use friendly, grounded first-person language, with an emphasis on curiosity, learning, and projects used at home.
 
 ## Profile
 
 - Name: Abu Talha
-- Role: Self-hosting, automation and practical technical systems
-- Location: United Kingdom
-- Email: mailto:abutalha.gb@proton.me
+- Location: London
+- Email: abutalha.gb@proton.me
 - GitHub: https://github.com/talhamehar007
-- Twitter: https://twitter.com/talhamehar007
+- X / Twitter: https://twitter.com/talhamehar007
 
-## Tone
+## Voice
 
-- Clear and grounded.
-- Friendly, but mature and considered.
-- Honest about personal projects and current skill level.
-- Avoid inflated claims, startup language, private infrastructure details, exact hardware specs, IP addresses or internal paths.
+- Personal, approachable, and curious.
+- Honest about work in progress and learning through experiments.
+- Keep existing background and project facts accurate.
+- Avoid inflated claims, proficiency scores, commercial sales copy, private infrastructure details, exact hardware specifications, IP addresses, and internal paths.
 
 ## Hero
 
-Headline:
-Building useful systems, one practical problem at a time.
+Eyebrow: Hobbyist coder. Lifelong tinkerer.
 
-Intro:
-I build and maintain practical systems for my own use: self-hosted services, media workflows, backups, small automation tools, and computer-vision experiments.
+Headline: Hey, I’m Abu. I build things out of curiosity.
 
-Supporting copy:
-This site gives visitors a clear sense of my technical interests, my current working level, and the kind of practical problems I enjoy solving.
+Introduction: A computer science enthusiast based in London, following interesting ideas down the rabbit hole. Usually writing Python, tinkering with my homelab, or figuring out how something works.
 
-## Overview
+Footnote: Built for the fun of figuring it out.
 
-Heading:
-A personal technical profile with a practical focus.
+The decorative Python profile names London, learning by building, small automations, self-hosting, and computer vision. It is an illustration, not an interactive terminal.
 
-Copy:
-This is a personal technical profile rather than a formal CV. It gives a clear record of the systems I like building, the tools I use, and the way I approach technical learning.
+## About
 
-Principles:
-- Prefer simple systems that can be understood later.
-- Automate repetitive work, but keep logs and visibility.
-- Treat backup and recovery as part of the design, not an afterthought.
-- Use tools because they solve the problem, not because they look impressive.
+Heading: Just a person who likes computers.
 
-## Focus Areas
+I’m Abu Talha. Coding is what I do when an idea won’t leave me alone.
 
-Self-hosted infrastructure:
-Running Docker-based services, thinking through storage, networking, service configuration, logs and day-to-day maintenance.
+I like making things for my own little corner of the world: a service running at home, a script that saves a bit of time, or an experiment that helps me understand something new. The process is half the fun.
 
-Backup and recovery:
-Designing backup routines that are understandable, repeatable and tested enough to be trusted when something goes wrong.
+My background includes civil engineering, project management, and hospitality. These days, a lot of my learning happens at a terminal—building things I use, getting stuck, and working out the next step.
 
-Media and photo systems:
-Building personal media workflows around storage, metadata, downloads, photo libraries and reliable service operation.
-
-Python automation and vision:
-Using Python to automate repetitive tasks and explore video processing, camera streams and computer-vision ideas.
-
-Small web and data tools:
-Creating small dashboards, scripts and local tools that make systems easier to inspect, search or operate.
-
-Operational thinking:
-Bringing planning, communication and practical problem-solving from hospitality, project management and engineering study.
+Principles: Follow the curiosity. Learn by doing. Keep it useful.
 
 ## Projects
 
-Smart CCTV and video analysis:
-A personal CCTV-style project exploring live streams, motion detection, event clips and computer-vision processing.
+Heading: From my workbench.
 
-Self-hosted media stack:
-A Docker-based media environment for serving, organising and managing a personal library.
+Introduction: Personal projects, useful little tools, and a few ongoing rabbit holes.
 
-Photo library and backup routine:
-A self-hosted photo workflow with attention to stored data, database-backed services and restore planning.
+Filters: All, Homelab, Automation, Computer vision. Each project has expandable notes.
 
-Backup automation:
-A set of local and remote backup workflows using tools that support encryption, retention and repeatable restores.
+- **A little home on my own server** — Docker, Jellyfin, Linux, media organisation, storage, permissions, and networking. In everyday use.
+- **Teaching a camera to notice things** — Python, OpenCV, YOLO, RTSP, and MediaMTX experiments. Work in progress; its graphic is a concept sketch.
+- **Backups I can actually trust** — Restic, Borg, Rclone, Rsync, and Bash; repeatable backups and restore testing. Always improving.
+- **A home for my photo library** — Immich, PostgreSQL, Redis, Docker, and backup planning. In everyday use.
+- **Scripts for the repetitive stuff** — Python, yt-dlp, gallery-dl, Bash, and uv for personal archive workflows.
+- **Making sense of the messy bits** — Python, SQLite, shell, logs, and local diagnostics. Ongoing experiments.
 
-Download and archive workflows:
-Command-line workflows for downloading, organising and archiving media with metadata and repeatable configuration.
+Footnote: Some things are finished. Most things are an excuse to learn something.
 
-Local search and diagnostics tools:
-Small scripts and local databases for searching structured data and inspecting service behaviour.
+## Now
 
-## Background
+Heading: On my mind lately.
 
-Heading:
-The practical side matters too.
+- Learning: Going a little deeper with Python. Better scripts, clearer logs, and understanding the code behind the thing that finally works.
+- Exploring: Seeing the world through code. Camera streams, OpenCV, and the gap between a frame of video and a useful event.
+- Tinkering: There’s always one more container. Keeping the homelab useful and backups understandable.
 
-Copy:
-My technical work is shaped by more than tools. Planning, service work, communication and structured problem-solving all influence how I approach projects.
-
-Background areas:
-- Hands-on technical learning
-- Hospitality operations
-- Project management
-- Engineering foundation
+These are personal interests, not live telemetry or an automatically updated activity feed.
 
 ## Contact
 
-Heading:
-Feel free to reach out.
+Heading: Got an interesting rabbit hole?
 
-Copy:
-I’m always interested in practical conversations around self-hosting, automation, backups, media workflows and small technical tools.
+A project, a question, or something cool you found. I’m always up for a good nerdy conversation.
+
+Primary action: Say hello via email. The email address also has a copy button with success and failure feedback.
+
+## Visual direction
+
+Warm paper, dark olive, and pale chartreuse; expressive serif headlines; simple sans-serif body text; small monospace labels. Light and dark themes, responsive navigation, keyboard focus, reduced-motion support, and comfortable touch targets.
+
+The social preview is `public/og.png`, generated with the built-in imagegen tool. Its brief: an editorial cream, olive, and chartreuse card with the exact heading “A little code. A lot of curiosity.”, the “abu./” wordmark, a code-window motif, and the line “Abu Talha · Hobbyist coder & curious human”.
